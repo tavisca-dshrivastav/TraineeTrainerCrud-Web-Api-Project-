@@ -2,16 +2,16 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using TraineeTrainerModel.DTO;
+using TraineeTrainerModel.Dto;
 using TraineeTrainerModel.Models;
 
 namespace TraineeTrainerModel.Translator
 {
     public class EmployeeTranslator
     {
-        public EmployeeDTO Translate(Employee employee)
+        public EmployeeDto Translate(Employee employee)
         {
-            var emp = new EmployeeDTO
+            var emp = new EmployeeDto
             {
                 ID = employee.ID,
                 Name = employee.Name,
@@ -21,7 +21,7 @@ namespace TraineeTrainerModel.Translator
             };
             return emp;
         }
-        public Employee Translate(EmployeeDTO employee)
+        public Employee Translate(EmployeeDto employee)
         {
             var emp = new Employee
             {
@@ -33,9 +33,9 @@ namespace TraineeTrainerModel.Translator
             };
             return emp;
         }
-        public EmployeeDTO Get(Trainer trainer)
+        public EmployeeDto Get(Trainer trainer)
         {
-            var t = new EmployeeDTO
+            var t = new EmployeeDto
             {
                 ID = trainer.ID,
                 Designation = trainer.Designation,
@@ -45,9 +45,9 @@ namespace TraineeTrainerModel.Translator
             };
             return t;
         }
-        public EmployeeDTO Get(Trainee trainee)
+        public EmployeeDto Get(Trainee trainee)
         {
-            var t = new EmployeeDTO
+            var t = new EmployeeDto
             {
                 ID = trainee.ID,
                 Designation = trainee.Designation,

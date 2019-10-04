@@ -1,20 +1,20 @@
-﻿using TraineeTrainerModel.DTO;
+﻿using TraineeTrainerModel.Dto;
 using TraineeTrainerModel.Models;
 
 namespace TraineeTrainerModel.Translator
 {
     public class TraineeTranslator
     {
-        public TraineeDTO Translate(Trainee trainee)
+        public TraineeDto Translate(Trainee trainee)
         {
-            var t = new TraineeDTO
+            var t = new TraineeDto
             {
                 BatchNo = trainee.BatchNo,
                 EmployeeID = trainee.ID
             };
             return t;
         }
-        public Trainee Translate(TraineeDTO traineeDTO, EmployeeDTO employeeDTO)
+        public Trainee Translate(TraineeDto traineeDTO, EmployeeDto employeeDTO)
         {
             var trainee = new Trainee
             {

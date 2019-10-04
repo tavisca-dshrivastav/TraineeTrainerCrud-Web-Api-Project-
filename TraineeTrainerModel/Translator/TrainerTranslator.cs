@@ -1,13 +1,13 @@
-﻿using TraineeTrainerModel.DTO;
+﻿using TraineeTrainerModel.Dto;
 using TraineeTrainerModel.Models;
 
 namespace TraineeTrainerModel.Translator
 {
     public class TrainerTranslator
     {
-        public TrainerDTO Translate(Trainer trainer)
+        public TrainerDto Translate(Trainer trainer)
         {
-            var t = new TrainerDTO
+            var t = new TrainerDto
             {
                 EmployeeId = trainer.ID,
                 Specialization = trainer.Specialization,
@@ -15,7 +15,7 @@ namespace TraineeTrainerModel.Translator
             };
             return t;
         }
-        public Trainer Translate(TrainerDTO trainerDTO, EmployeeDTO employeeDTO)
+        public Trainer Translate(TrainerDto trainerDTO, EmployeeDto employeeDTO)
         {
             var trainee = new Trainer
             {

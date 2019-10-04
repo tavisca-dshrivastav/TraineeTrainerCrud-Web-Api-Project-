@@ -2,40 +2,57 @@
 using Microsoft.AspNetCore.Mvc;
 using TraineeTrainerModel.Services;
 using TraineeTrainerModel.Interfaces;
-using TraineeTrainerModel.DAL;
+using TraineeTrainerModel.Dal;
 using TraineeTrainerModel.Models;
+using System;
+using TraineeTrainerModel.Services.Interface;
+
 
 namespace TraineeTrainerModel.Controllers
 {
-
     [Route("api/[controller]")]
     [ApiController]
-    public class EmployeeController : ControllerBase
+    public class EmployeeController<T> : ControllerBase where T : class
     {
-        private EmloyeeService _service;
+        
+        private IService<T> _service;
 
-        public EmployeeController(IDBServices database)
+        public EmployeeController(IService<T> service)
         {
-            _service = new EmloyeeService(new EmployeeDAL(database));
+            _service = service;
         }
 
         // GET api/values
         [HttpGet]
-        public ActionResult<IEnumerable<Employee>> Get()
+        public ActionResult<IEnumerable<T>> Get()
         {
-            return _service.Get() ?? (ActionResult<IEnumerable<Employee>>)StatusCode(404);
+            try
+            {
+                return _service.Get();
+            }
+            catch
+            {
+                return (ActionResult<IEnumerable<T>>)StatusCode(404);
+            }
         }
 
         // GET api/values/5
         [HttpGet("{id}")]
-        public ActionResult<Employee> Get(string id)
+        public ActionResult<T> Get(string id)
         {
-            return _service.Get(id) ?? (ActionResult<Employee>)StatusCode(404);
+            try
+            {
+                return (ActionResult<T>)_service.Get(id);
+            }
+            catch
+            {
+                return (ActionResult<T>)StatusCode(404);
+            }
         }
 
         // POST api/values
         [HttpPost]
-        public ActionResult Post([FromBody] Employee value)
+        public ActionResult Post([FromBody] T value)
         {
             if (_service.Create(value))
                 return StatusCode(201);
@@ -44,7 +61,7 @@ namespace TraineeTrainerModel.Controllers
 
         // PUT api/values/5
         [HttpPut("{id}")]
-        public ActionResult Put(string id, [FromBody] Employee value)
+        public ActionResult Put(string id, [FromBody] T value)
         {
 
             if (_service.Update(id, value))
@@ -56,9 +73,11 @@ namespace TraineeTrainerModel.Controllers
         [HttpDelete("{id}")]
         public ActionResult Delete(string id)
         {
-            if (_service.Delete(id))
+            if (_service.DeleteById(id))
                 return StatusCode(200);
             return StatusCode(405);
         }
     }
+
+    
 }

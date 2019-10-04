@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using TraineeTrainerModel.DAL.Interfaces;
+using TraineeTrainerModel.Dal.Interfaces;
 using TraineeTrainerModel.Models;
 using TraineeTrainerModel.Services.Interface;
 
@@ -10,9 +10,9 @@ namespace TraineeTrainerModel.Services
 {
     public class EmloyeeService : IService<Employee>
     {
-        private IDAL<Employee> _employeeDAL;
+        private IBaseDal<Employee> _employeeDAL;
 
-        public EmloyeeService(IDAL<Employee> employeeDAL)
+        public EmloyeeService(IBaseDal<Employee> employeeDAL)
         {
            _employeeDAL = employeeDAL;
         }

@@ -2,32 +2,32 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using TraineeTrainerModel.DAL.Interfaces;
-using TraineeTrainerModel.DTO;
+using TraineeTrainerModel.Dal.Interfaces;
+using TraineeTrainerModel.Dto;
 using TraineeTrainerModel.Interfaces;
 using TraineeTrainerModel.Models;
 using TraineeTrainerModel.Translator;
 
-namespace TraineeTrainerModel.DAL
+namespace TraineeTrainerModel.Dal
 {
-    public class TrainerDAL : IDAL<Trainer>
+    public class TrainerDal : IBaseDal<Trainer>
     {
         private IDBServices _dbService;
         private EmployeeTranslator _employeeTranslator = new EmployeeTranslator();
         private TrainerTranslator _trainerTranslator = new TrainerTranslator();
 
-        public TrainerDAL(IDBServices dbService)
+        public TrainerDal(IDBServices dbService)
         {
             _dbService = dbService;
         }
 
         public void Create(Trainer trainer)
         {
-            EmployeeDTO employeeDTO = _employeeTranslator.Get(trainer);
+            EmployeeDto employeeDTO = _employeeTranslator.Get(trainer);
 
             _dbService.employees.Add(employeeDTO);
 
-            TrainerDTO trainerDTO = _trainerTranslator.Translate(trainer);
+            TrainerDto trainerDTO = _trainerTranslator.Translate(trainer);
             _dbService.Trainer.Add(trainerDTO);
         }
 
@@ -52,7 +52,7 @@ namespace TraineeTrainerModel.DAL
             return trainer;
         }
 
-        private List<Trainer> GetTraineeFromTraineeDTOs(List<TrainerDTO> trainerDTOs)
+        private List<Trainer> GetTraineeFromTraineeDTOs(List<TrainerDto> trainerDTOs)
         {
             var trainers = new List<Trainer>();
             foreach (var trainer in trainerDTOs)

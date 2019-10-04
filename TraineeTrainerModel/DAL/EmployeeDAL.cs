@@ -2,18 +2,18 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using TraineeTrainerModel.DAL.Interfaces;
+using TraineeTrainerModel.Dal.Interfaces;
 using TraineeTrainerModel.Interfaces;
 using TraineeTrainerModel.Models;
 using TraineeTrainerModel.Translator;
 
-namespace TraineeTrainerModel.DAL
+namespace TraineeTrainerModel.Dal
 {
-    public class EmployeeDAL : IDAL<Employee>
+    public class EmployeeDal : IBaseDal<Employee>
     {
         IDBServices _database;
         EmployeeTranslator translator = new EmployeeTranslator();
-        public EmployeeDAL(IDBServices database)
+        public EmployeeDal(IDBServices database)
         {
             _database = database;
         }

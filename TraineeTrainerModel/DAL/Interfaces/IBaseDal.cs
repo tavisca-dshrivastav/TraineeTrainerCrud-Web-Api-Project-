@@ -4,9 +4,9 @@ using System.Linq;
 using System.Threading.Tasks;
 using TraineeTrainerModel.Models;
 
-namespace TraineeTrainerModel.DAL.Interfaces
+namespace TraineeTrainerModel.Dal.Interfaces
 {
-    public interface IDAL<T>
+    public interface IBaseDal<T>
     {
         void Create(T employee);
 

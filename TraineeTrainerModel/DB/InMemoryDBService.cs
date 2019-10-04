@@ -3,21 +3,21 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using TraineeTrainerModel.Interfaces;
-using TraineeTrainerModel.DTO;
+using TraineeTrainerModel.Dto;
 
 namespace TraineeTrainerModel.DB
 {
     public class InMemoryDBService : IDBServices
     {
-        public List<EmployeeDTO> employees { get; set; }
-        public List<TraineeDTO> Trainee { get; set; }
-        public List<TrainerDTO> Trainer { get; set; }
+        public List<EmployeeDto> employees { get; set; }
+        public List<TraineeDto> Trainee { get; set; }
+        public List<TrainerDto> Trainer { get; set; }
 
         public InMemoryDBService()
         {
-            employees = new List<EmployeeDTO>
+            employees = new List<EmployeeDto>
             {
-                new EmployeeDTO
+                new EmployeeDto
                 {
                     ID = "C297",
                     Name= "Deepak",
@@ -25,7 +25,7 @@ namespace TraineeTrainerModel.DB
                     Email="xyz",
                     Phone="9650268873"
                 },
-                new EmployeeDTO
+                new EmployeeDto
                 {
                     ID = "C298",
                     Name= "Tushar",
@@ -34,17 +34,17 @@ namespace TraineeTrainerModel.DB
                     Phone="9650268873"
                 },
             };
-            Trainee = new List<TraineeDTO>
+            Trainee = new List<TraineeDto>
             {
-                new TraineeDTO
+                new TraineeDto
                 {
                     EmployeeID = employees[0].ID,
                     BatchNo = 1,
                 }
             };
-            Trainer = new List<TrainerDTO>
+            Trainer = new List<TrainerDto>
             {
-                new TrainerDTO
+                new TrainerDto
                 {
                     EmployeeId = employees[1].ID,
                     Specialization = "Java",

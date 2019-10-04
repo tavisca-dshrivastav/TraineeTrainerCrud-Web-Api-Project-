@@ -2,49 +2,50 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using TraineeTrainerModel.DAL.Interfaces;
+using TraineeTrainerModel.Dal.Interfaces;
 using TraineeTrainerModel.Models;
+using TraineeTrainerModel.Services.Interface;
 
 namespace TraineeTrainerModel.Services
 {
-    public class TraineeService
+    public class TraineeService : IService<Trainee>
     {
-        private IDAL<Trainee> _traineeDAL;
+        private IBaseDal<Trainee> _traineeDal;
 
-        public TraineeService(IDAL<Trainee> traineeDAL)
+        public TraineeService(IBaseDal<Trainee> traineeDal)
         {
-            _traineeDAL = traineeDAL;
+            _traineeDal = traineeDal;
         }
 
         public Trainee Get(string id)
         {
-            return _traineeDAL.Get(id);
+            return _traineeDal.Get(id);
         }
 
         public List<Trainee> Get()
         {
-            return _traineeDAL.Get();
+            return _traineeDal.Get();
         }
         public bool Create(Trainee employee)
         {
-            if (_traineeDAL.Exist(employee))
+            if (_traineeDal.Exist(employee))
                 return false;
-            _traineeDAL.Create(employee);
+            _traineeDal.Create(employee);
             return true;
         }
-        public bool Delete(string id)
+        public bool DeleteById(string id)
         {
-            if (!_traineeDAL.Exist(_traineeDAL.Get(id)))
+            if (!_traineeDal.Exist(_traineeDal.Get(id)))
                 return false;
-            _traineeDAL.Remove(id);
+            _traineeDal.Remove(id);
             return true;
         }
 
         public bool Update(string id, Trainee employee)
         {
-            if (!_traineeDAL.Exist(employee))
+            if (!_traineeDal.Exist(employee))
                 return false;
-            _traineeDAL.Update(id, employee);
+            _traineeDal.Update(id, employee);
             return true;
         }
     }
