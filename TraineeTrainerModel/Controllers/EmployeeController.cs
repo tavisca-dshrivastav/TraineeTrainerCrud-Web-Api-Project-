@@ -6,24 +6,28 @@ using TraineeTrainerModel.Dal;
 using TraineeTrainerModel.Models;
 using System;
 using TraineeTrainerModel.Services.Interface;
+using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Authorization;
 
 
 namespace TraineeTrainerModel.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/user/[controller]")]
     [ApiController]
     public class EmployeeController<T> : ControllerBase where T : class
     {
         
         private IService<T> _service;
+        
 
         public EmployeeController(IService<T> service)
         {
             _service = service;
         }
 
-        // GET api/values
+        //// GET api/values
         [HttpGet]
+        [Authorize(Roles = "admin")]
         public ActionResult<IEnumerable<T>> Get()
         {
             try
@@ -36,6 +40,7 @@ namespace TraineeTrainerModel.Controllers
             }
         }
 
+        [Authorize(Roles ="Admin")]
         // GET api/values/5
         [HttpGet("{id}")]
         public ActionResult<T> Get(string id)
@@ -50,6 +55,7 @@ namespace TraineeTrainerModel.Controllers
             }
         }
 
+        [Authorize(Roles = "TrainingManager")]
         // POST api/values
         [HttpPost]
         public ActionResult Post([FromBody] T value)
@@ -58,6 +64,9 @@ namespace TraineeTrainerModel.Controllers
                 return StatusCode(201);
             return StatusCode(403);
         }
+
+        // POST: api/Login
+        
 
         // PUT api/values/5
         [HttpPut("{id}")]

@@ -6,7 +6,7 @@ using TraineeTrainerModel.Generics;
 
 namespace TraineeTrainerModel.Models
 {
-    [GeneratedControllerAttribute("api/employee")]
+    [GeneratedControllerAttribute("api/user/employee")]
     public class Employee
     {
         public string ID { get; set; }
@@ -16,13 +16,13 @@ namespace TraineeTrainerModel.Models
         public string Phone { get; set; }
     }
 
-    [GeneratedControllerAttribute("api/trainee")]
+    [GeneratedControllerAttribute("api/user/trainee")]
     public class Trainee : Employee
     {
         public int BatchNo { get; set; }
     }
 
-    [GeneratedControllerAttribute("api/trainer")]
+    [GeneratedControllerAttribute("api/user/trainer")]
     public class Trainer : Employee
     {
         public string Specialization { get; set; }

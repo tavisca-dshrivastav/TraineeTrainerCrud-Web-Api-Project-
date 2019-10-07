@@ -12,7 +12,7 @@ namespace TraineeTrainerModel.DB
         public List<EmployeeDto> employees { get; set; }
         public List<TraineeDto> Trainee { get; set; }
         public List<TrainerDto> Trainer { get; set; }
-
+        public List<UserCredentialDto> UserCredentials { get; set; }
         public InMemoryDBService()
         {
             employees = new List<EmployeeDto>
@@ -22,7 +22,7 @@ namespace TraineeTrainerModel.DB
                     ID = "C297",
                     Name= "Deepak",
                     Designation="Fresher",
-                    Email="xyz",
+                    Email="d@gmail.com",
                     Phone="9650268873"
                 },
                 new EmployeeDto
@@ -30,7 +30,7 @@ namespace TraineeTrainerModel.DB
                     ID = "C298",
                     Name= "Tushar",
                     Designation="Fresher",
-                    Email="xyz",
+                    Email="t@gmail.com",
                     Phone="9650268873"
                 },
             };
@@ -50,6 +50,21 @@ namespace TraineeTrainerModel.DB
                     Specialization = "Java",
                     TribeName = "GCE"
                 }
+            };
+            UserCredentials = new List<UserCredentialDto>
+            {
+                new UserCredentialDto
+                {
+                    Email = employees[0].Email,
+                    PasswordHash = "123",
+                    Role = "trainee"
+                },
+                new UserCredentialDto
+                {
+                    Email = employees[1].Email,
+                    PasswordHash = "123",
+                    Role = "admin"
+                },
             };
         }
     }

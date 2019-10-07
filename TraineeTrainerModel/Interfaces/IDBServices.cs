@@ -11,5 +11,6 @@ namespace TraineeTrainerModel.Interfaces
         List<EmployeeDto> employees { get; set; }
         List<TraineeDto> Trainee { get; set; }
         List<TrainerDto> Trainer { get; set; }
+        List<UserCredentialDto> UserCredentials { get; set; }
     }
 }
